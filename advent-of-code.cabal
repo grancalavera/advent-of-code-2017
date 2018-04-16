@@ -1,0 +1,64 @@
+-- This file has been generated from package.yaml by hpack version 0.20.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 62a8585ae3c2ba6dfb4ef281c27e7f301be90ad6fd7a98a5c687934d0c0158fd
+
+name:           advent-of-code
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/grancalavera/advent-of-code#readme
+bug-reports:    https://github.com/grancalavera/advent-of-code/issues
+author:         Leon Coto
+maintainer:     leoncoto@gmail.com
+copyright:      Leon Coto
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/grancalavera/advent-of-code
+
+library
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  exposed-modules:
+      Advent.Day1
+  other-modules:
+      Paths_advent_of_code
+  default-language: Haskell2010
+
+executable advent-of-code
+  main-is: Main.hs
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      advent-of-code
+    , base
+  other-modules:
+      Paths_advent_of_code
+  default-language: Haskell2010
+
+test-suite advent-of-code-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , advent-of-code
+    , base
+    , hspec
+  other-modules:
+      AdventSpec
+      Paths_advent_of_code
+  default-language: Haskell2010

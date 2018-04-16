@@ -1,0 +1,40 @@
+name: advent-of-code
+version: '0.1.0.0'
+category: Web
+author: Leon Coto
+maintainer: leoncoto@gmail.com
+copyright: Leon Coto
+license: BSD3
+github: grancalavera/advent-of-code
+extra-source-files:
+- README.md
+library:
+  source-dirs: src
+  exposed-modules:
+  - Advent.Day1
+  dependencies:
+  - base >=4.7 && <5
+executables:
+  advent-of-code:
+    main: Main.hs
+    source-dirs: app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - base
+    - advent-of-code
+tests:
+  advent-of-code-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - base
+    - advent-of-code
+    - hspec
+    - QuickCheck
