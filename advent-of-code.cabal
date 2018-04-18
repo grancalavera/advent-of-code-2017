@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 998fa02e5141687065d8ffacdcc7fd31b6abd5742ddb23ac72ee3d20f6150128
+-- hash: 0b4245b816e175752624094574b3304fd4a6549704a8215b873c84ea015f8b46
 
 name:           advent-of-code
 version:        0.1.0.0
@@ -44,6 +44,7 @@ executable advent-of-code
   build-depends:
       advent-of-code
     , base
+    , split
   other-modules:
       Paths_advent_of_code
   default-language: Haskell2010

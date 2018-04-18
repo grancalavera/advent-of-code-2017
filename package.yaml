@@ -25,6 +25,7 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - base
+    - split
     - advent-of-code
 tests:
   advent-of-code-test:

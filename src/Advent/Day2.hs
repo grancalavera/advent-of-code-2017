@@ -9,7 +9,7 @@ checksum :: [[Int]] -> Int
 checksum xs = fromJust $ sum <$> mapM checksumRow xs
 
 checksumRow :: [Int] -> Maybe Int
-checksumRow xs = checksumRow' Nothing Nothing xs
+checksumRow = checksumRow' Nothing Nothing
 
 checksumRow' :: Maybe Int -> Maybe Int -> [Int] -> Maybe Int
 checksumRow' mn mx []       = (-) <$> mx <*> mn

@@ -2,18 +2,40 @@ module Main
 where
 import           System.IO                      ( readFile )
 import           Data.Char                      ( digitToInt )
+import           Data.List.Split                ( splitOn )
 import           Advent.Day1
+import           Advent.Day2
 
 main :: IO ()
-main = putStrLn "Advent of Code"
+main = do
+  header "Advent of Code"
+  day1
+  day2
 
 day1 :: IO ()
 day1 = do
+  header "Day 1"
+
   contents <- readFile "day1input.txt"
   let contents' = concat $ lines contents
 
-  putStrLn "Part 1"
+  header "Part 1"
   print (captcha 1 $ map digitToInt $ concat $ lines contents)
 
-  putStrLn "Part 2"
-  print (captcha (length contents' `div` 2) $ map digitToInt $ concat $ lines contents)
+  header "Part 2"
+  print
+    (captcha (length contents' `div` 2) $ map digitToInt $ concat $ lines
+      contents
+    )
+
+day2 :: IO ()
+day2 = do
+  header "Day 2"
+  header "Part 1"
+  contents <- readFile "day2input.txt"
+  let x = map (splitOn "\t") $ lines contents
+      y = map (map read) x
+  print $ checksum y
+
+header :: String -> IO ()
+header = putStrLn . ("\n" ++)
