@@ -3,6 +3,7 @@ module AdventSpec
   )
 where
 import           Advent.Day1
+import           Advent.Day2
 import           Test.Hspec
 
 spec :: Spec
@@ -19,3 +20,8 @@ spec = do
       captcha 3 [1, 2, 3, 4, 2, 5] `shouldBe` 4
       captcha 3 [1, 2, 3, 1, 2, 3] `shouldBe` 12
       captcha 4 [1, 2, 1, 3, 1, 4, 1, 5] `shouldBe` 4
+  describe "Day 2: Corruption Checksum" $ do
+    it "calculates the checksum of the spreadsheet" $ do
+      checksumRow [5, 1, 9, 5] `shouldBe` Just 8
+      checksumRow [7, 5, 3] `shouldBe` Just 4
+      checksumRow [2, 4, 6, 8] `shouldBe` Just 6
