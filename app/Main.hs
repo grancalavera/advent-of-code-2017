@@ -15,7 +15,6 @@ main = do
 day1 :: IO ()
 day1 = do
   header "Day 1"
-
   contents <- readFile "day1input.txt"
   let contents' = concat $ lines contents
 
@@ -31,11 +30,14 @@ day1 = do
 day2 :: IO ()
 day2 = do
   header "Day 2"
-  header "Part 1"
   contents <- readFile "day2input.txt"
-  let x = map (splitOn "\t") $ lines contents
-      y = map (map read) x
-  print $ checksum y
+  let spreadsheet = map (map read) $map (splitOn "\t") $ lines contents
+
+  header "Part 1"
+  print $ checksum spreadsheet
+
+  header "Part 2"
+  print $ divsum spreadsheet
 
 header :: String -> IO ()
 header = putStrLn . ("\n" ++)

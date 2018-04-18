@@ -8,7 +8,7 @@ import           Test.Hspec
 
 spec :: Spec
 spec = do
-  describe "Day1" $ do
+  describe "Day1: Captcha" $ do
     it "sum of all the digits that match the next digit in a circular list" $ do
       captcha 1 [1, 1, 2, 2] `shouldBe` 3
       captcha 1 [1, 1, 1, 1] `shouldBe` 4
@@ -28,3 +28,10 @@ spec = do
     it "calculates the checksum of the spreadsheet" $ do
       checksum [] `shouldBe` 0
       checksum [[5, 1, 9, 5], [7, 5, 3], [2, 4, 6, 8]] `shouldBe` 18
+    it "finds the unique pair of evenly divisible numbers in a row" $ do
+      divsumRow [5, 9, 2, 8] `shouldBe` 4
+      divsumRow [9, 4, 7, 3] `shouldBe` 3
+      divsumRow [3, 8, 6, 5] `shouldBe` 2
+    it "finds the divsum of the spreadsheet" $ do
+      divsum [] `shouldBe` 0
+      divsum [[5, 9, 2, 8], [9, 4, 7, 3], [3, 8, 6, 5]] `shouldBe` 9
