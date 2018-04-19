@@ -45,7 +45,12 @@ day4 = do
   header "Day 4"
   contents <- readFile "day4input.txt"
   let passphrases = map (splitOn " ") $ lines contents
-  print $ length $ filter id $ map validatePassPhrase passphrases
+
+  header "Part 1"
+  print $ length $ filter validatePassPhrase passphrases
+
+  header "Part 2"
+  print $ length $ filter validateNoAnagrams $ filter validatePassPhrase passphrases
 
 header :: String -> IO ()
 header = putStrLn . ("\n" ++)

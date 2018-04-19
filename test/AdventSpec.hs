@@ -39,10 +39,16 @@ spec = do
       divsum [] `shouldBe` 0
       divsum [[5, 9, 2, 8], [9, 4, 7, 3], [3, 8, 6, 5]] `shouldBe` 9
 
-  describe "Day 4: Day 4: High-Entropy Passphrases"
-    $ it "validates passphrases do not contain repeated words"
-    $ do
-        validatePassPhrase [] `shouldBe` False
-        validatePassPhrase ["aa", "bb", "cc", "dd", "ee"] `shouldBe` True
-        validatePassPhrase ["aa", "bb", "cc", "dd", "aa"] `shouldBe` False
-        validatePassPhrase ["aa", "bb", "cc", "dd", "aaa"] `shouldBe` True
+  describe "Day 4: Day 4: High-Entropy Passphrases" $ do
+    it "validates passphrases do not contain repeated words" $ do
+      validatePassPhrase [] `shouldBe` False
+      validatePassPhrase ["aa", "bb", "cc", "dd", "ee"] `shouldBe` True
+      validatePassPhrase ["aa", "bb", "cc", "dd", "aa"] `shouldBe` False
+      validatePassPhrase ["aa", "bb", "cc", "dd", "aaa"] `shouldBe` True
+    it "validates no two words are anagrams" $ do
+      validateNoAnagrams ["abcde", "fghij"] `shouldBe` True
+      validateNoAnagrams ["abcde", "xyz", "ecdab"] `shouldBe` False
+      validateNoAnagrams ["a", "ab", "abc", "abd", "abf", "abj"] `shouldBe` True
+      validateNoAnagrams ["iiii", "oiii", "ooii", "oooi", "oooo"]
+        `shouldBe` True
+      validateNoAnagrams ["oiii", "ioii", "iioi", "iiio"] `shouldBe` False
