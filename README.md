@@ -1,3 +1,3 @@
 # advent-of-code
 
-add description of advent-of-code here
+> [Advent of Code](http://adventofcode.com/2017) solutions in Haskell

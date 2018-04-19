@@ -12,6 +12,7 @@ main = do
   header "Advent of Code"
   day1
   day2
+  day4
 
 day1 :: IO ()
 day1 = do
@@ -50,7 +51,8 @@ day4 = do
   print $ length $ filter validatePassPhrase passphrases
 
   header "Part 2"
-  print $ length $ filter validateNoAnagrams $ filter validatePassPhrase passphrases
+  print $ length $ filter validateNoAnagrams $ filter validatePassPhrase
+                                                      passphrases
 
 header :: String -> IO ()
 header = putStrLn . ("\n" ++)
