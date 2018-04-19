@@ -13,8 +13,10 @@ library:
   exposed-modules:
   - Advent.Day1
   - Advent.Day2
+  - Advent.Day4
   dependencies:
   - base >=4.7 && <5
+  - containers
 executables:
   advent-of-code:
     main: Main.hs

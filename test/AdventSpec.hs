@@ -4,10 +4,12 @@ module AdventSpec
 where
 import           Advent.Day1
 import           Advent.Day2
+import           Advent.Day4
 import           Test.Hspec
 
 spec :: Spec
 spec = do
+
   describe "Day1: Captcha" $ do
     it "sum of all the digits that match the next digit in a circular list" $ do
       captcha 1 [1, 1, 2, 2] `shouldBe` 3
@@ -20,6 +22,7 @@ spec = do
       captcha 3 [1, 2, 3, 4, 2, 5] `shouldBe` 4
       captcha 3 [1, 2, 3, 1, 2, 3] `shouldBe` 12
       captcha 4 [1, 2, 1, 3, 1, 4, 1, 5] `shouldBe` 4
+
   describe "Day 2: Corruption Checksum" $ do
     it "calculates the checksum of each row in the spreadsheet" $ do
       checksumRow [5, 1, 9, 5] `shouldBe` Just 8
@@ -35,3 +38,11 @@ spec = do
     it "finds the divsum of the spreadsheet" $ do
       divsum [] `shouldBe` 0
       divsum [[5, 9, 2, 8], [9, 4, 7, 3], [3, 8, 6, 5]] `shouldBe` 9
+
+  describe "Day 4: Day 4: High-Entropy Passphrases"
+    $ it "validates passphrases do not contain repeated words"
+    $ do
+        validatePassPhrase [] `shouldBe` False
+        validatePassPhrase ["aa", "bb", "cc", "dd", "ee"] `shouldBe` True
+        validatePassPhrase ["aa", "bb", "cc", "dd", "aa"] `shouldBe` False
+        validatePassPhrase ["aa", "bb", "cc", "dd", "aaa"] `shouldBe` True
