@@ -6,6 +6,7 @@ import           Data.List.Split                ( splitOn )
 import           Advent.Day1
 import           Advent.Day2
 import           Advent.Day4
+import           Advent.Day5
 
 main :: IO ()
 main = do
@@ -13,6 +14,7 @@ main = do
   day1
   day2
   day4
+  day5
 
 day1 :: IO ()
 day1 = do
@@ -53,6 +55,13 @@ day4 = do
   header "Part 2"
   print $ length $ filter validateNoAnagrams $ filter validatePassPhrase
                                                       passphrases
+
+day5 :: IO ()
+day5 = do
+  header "Day 5"
+  contents <- readFile "day5input.txt"
+  let instructions = (map read $ lines contents) :: [Int]
+  print $ escapeMaze instructions
 
 header :: String -> IO ()
 header = putStrLn . ("\n" ++)

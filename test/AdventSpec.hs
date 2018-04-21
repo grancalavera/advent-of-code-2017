@@ -5,6 +5,7 @@ where
 import           Advent.Day1
 import           Advent.Day2
 import           Advent.Day4
+import           Advent.Day5
 import           Test.Hspec
 
 spec :: Spec
@@ -52,3 +53,9 @@ spec = do
       validateNoAnagrams ["iiii", "oiii", "ooii", "oooi", "oooo"]
         `shouldBe` True
       validateNoAnagrams ["oiii", "ioii", "iioi", "iiio"] `shouldBe` False
+
+  describe "Day 5: A Maze of Twisty Trampolines, All Alike" $ do
+    it "finds the way out of the maze" $ do
+      escapeMaze [] `shouldBe` 0
+      escapeMaze [0, 3, 0, 1, -3] `shouldBe` 5
+      escapeMaze [3,0,0,-2] `shouldBe` 8
