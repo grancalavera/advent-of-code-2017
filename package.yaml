@@ -18,6 +18,7 @@ library:
   dependencies:
   - base >=4.7 && <5
   - containers
+  - vector
 executables:
   advent-of-code:
     main: Main.hs

@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f08f099fef22a1b4481cc5d8cca989c2b0118c945a793e7845d3515e84f5f2c0
+-- hash: f782aa6957477044befdcea9d57e18af6b588446b8969b6f8582d36d9a802276
 
 name:           advent-of-code
 version:        0.1.0.0
@@ -30,6 +30,7 @@ library
   build-depends:
       base >=4.7 && <5
     , containers
+    , vector
   exposed-modules:
       Advent.Day1
       Advent.Day2

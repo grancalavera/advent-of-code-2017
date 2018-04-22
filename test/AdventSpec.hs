@@ -59,3 +59,6 @@ spec = do
       escapeMaze [] `shouldBe` 0
       escapeMaze [0, 3, 0, 1, -3] `shouldBe` 5
       escapeMaze [3,0,0,-2] `shouldBe` 8
+    it "finds the way out of the maze with special rules" $ do
+      escapeMazeSpecial [] `shouldBe` 0
+      escapeMazeSpecial [0, 3, 0, 1, -3] `shouldBe` 10
