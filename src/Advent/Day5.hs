@@ -9,43 +9,22 @@ import           Data.Vector.Unboxed            ( Vector
                                                 , (!?)
                                                 )
 
-escapeMazeSpecial :: [Int] -> Int
-escapeMazeSpecial maze = escapeMaze'' 0 0 (V.fromList maze)
+escapeMaze :: (Int -> Int) -> [Int] -> Int
+escapeMaze updateOffset maze = escapeMaze' updateOffset 0 0 (V.fromList maze)
 
-escapeMaze :: [Int] -> Int
-escapeMaze maze = escapeMaze' 0 0 (V.fromList maze)
-
-escapeMaze' :: Int -> Int -> Vector Int -> Int
-escapeMaze' !jump !jumps !maze = if isNothing (maze !? jump)
+escapeMaze' :: (Int -> Int) -> Int -> Int -> Vector Int -> Int
+escapeMaze' updateOffset !jump !jumps !maze = if isNothing (maze !? jump)
   then jumps
-  else escapeMaze' (jump + offset)
-                   (jumps + 1)
-                   (V.update maze (V.fromList [(jump, newOffset offset)]))
- where
-  offset = maze ! jump
-  newOffset !o = o + 1
+  else
+    let !offset = maze ! jump
+    in  escapeMaze' updateOffset
+                    (jump + offset)
+                    (jumps + 1)
+                    (V.update maze (V.fromList [(jump, updateOffset offset)]))
 
-escapeMaze'' :: Int -> Int -> Vector Int -> Int
-escapeMaze'' jump jumps maze = if isNothing (maze !? jump)
-  then jumps
-  else escapeMaze'' (jump' jump offset) (jumps' jumps) maze'
- where
-  jump' !j !o = j + o
-  jumps' !js = js + 1
-  offset = maze ! jump
-  maze'  = V.update maze (V.fromList [(jump, offset' offset)])
-  offset' !o = if o > 2 then o - 1 else o + 1
+simpleOffset :: Int -> Int
+simpleOffset !o = o + 1
 
-{-
-(0)  3   0  1   -3  |  0
-(1)  3   0  1   -3  |  1
- 2  (3)  0  1   -3  |  2
- 2   2   0  1  (-3) |  3
- 2  (2)  0  1   -2  |  4
- 2   3   0 (1)  -2  |  5
- 2   1   0  2  (-2) |  6
- 2   1  (0) 2   -1  |  7
- 2   1  (1) 2   -1  |  8
- 2   1   2 (2)  -1  |  9
- 2   1   3  2   -1  | 10
--}
+specialOffset :: Int -> Int
+specialOffset !o | o > 2     = o - 1
+                 | otherwise = o + 1

@@ -61,8 +61,8 @@ day5 = do
   header "Day 5"
   contents <- readFile "day5input.txt"
   let instructions = (map read $ lines contents) :: [Int]
-  print $ escapeMaze instructions
-  -- print $ escapeMazeSpecial instructions
+  print $ escapeMaze simpleOffset instructions
+  print $ escapeMaze specialOffset instructions
 
 header :: String -> IO ()
 header = putStrLn . ("\n" ++)

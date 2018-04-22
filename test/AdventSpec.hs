@@ -56,9 +56,11 @@ spec = do
 
   describe "Day 5: A Maze of Twisty Trampolines, All Alike" $ do
     it "finds the way out of the maze" $ do
-      escapeMaze [] `shouldBe` 0
-      escapeMaze [0, 3, 0, 1, -3] `shouldBe` 5
-      escapeMaze [3,0,0,-2] `shouldBe` 8
+      let escape = escapeMaze simpleOffset
+      escape [] `shouldBe` 0
+      escape [0, 3, 0, 1, -3] `shouldBe` 5
+      escape [3,0,0,-2] `shouldBe` 8
     it "finds the way out of the maze with special rules" $ do
-      escapeMazeSpecial [] `shouldBe` 0
-      escapeMazeSpecial [0, 3, 0, 1, -3] `shouldBe` 10
+      let escape = escapeMaze specialOffset
+      escape [] `shouldBe` 0
+      escape [0, 3, 0, 1, -3] `shouldBe` 10
