@@ -70,7 +70,11 @@ day6 = do
   header "Day 6"
   contents <- readFile "day6input.txt"
   let memory = map (read::String -> Int) $ splitOn "\t" $ head $ lines contents
+  header "Part 1"
   print $ reallocate memory
+
+  header "Part 2"
+  print $ cycles memory
 
 header :: String -> IO ()
 header = putStrLn . ("\n" ++)

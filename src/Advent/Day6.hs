@@ -6,26 +6,34 @@ import           Data.Vector.Unboxed            ( Vector
                                                 , (!)
                                                 )
 import           Data.List                      ( foldl' )
-import           Data.Set                       ( Set )
-import qualified Data.Set                      as S
+import           Data.Map                       ( Map )
+import qualified Data.Map                      as M
 
 reallocate :: [Int] -> Int
 reallocate [] = 0
-reallocate xs = S.size $ reallocate' mempty $ V.fromList xs
+reallocate xs = M.size $ fst $ reallocate' mempty $ V.fromList xs
 
-reallocate' :: Set (Vector Int) -> Vector Int -> Set (Vector Int)
+cycles :: [Int] -> Int
+cycles [] = 0
+cycles xs =
+  let (seen, memory) = reallocate' mempty $ V.fromList xs
+      seenAt         = seen M.! memory
+  in  M.size seen - seenAt
+
+reallocate'
+  :: Map (Vector Int) Int -> Vector Int -> (Map (Vector Int) Int, Vector Int)
 reallocate' seen memory
-  | S.member memory seen
-  = seen
+  | M.member memory seen
+  = (seen, memory)
   | otherwise
   = let (seen', memory') = step seen memory in reallocate' seen' memory'
 
-step :: Set (Vector Int) -> Vector Int -> (Set (Vector Int), Vector Int)
+step :: Map (Vector Int) Int -> Vector Int -> (Map (Vector Int) Int, Vector Int)
 step seen memory =
   let (bank, blocks) = largest memory
       bank'          = nextBank bank memory
       memory'        = redist bank' blocks (erase bank memory)
-  in  (S.insert memory seen, memory')
+  in  (M.insert memory (M.size seen) seen, memory')
 
 erase :: Int -> Vector Int -> Vector Int
 erase bank memory = V.update memory (V.fromList [(bank, 0)])

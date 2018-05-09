@@ -61,7 +61,7 @@ spec = do
       let escape = escapeMaze simpleOffset
       escape [] `shouldBe` 0
       escape [0, 3, 0, 1, -3] `shouldBe` 5
-      escape [3,0,0,-2] `shouldBe` 8
+      escape [3, 0, 0, -2] `shouldBe` 8
     it "finds the way out of the maze with special rules" $ do
       let escape = escapeMaze specialOffset
       escape [] `shouldBe` 0
@@ -71,3 +71,6 @@ spec = do
     it "finds how many steps it takes to find a known state" $ do
       reallocate [] `shouldBe` 0
       reallocate [0, 2, 7, 0] `shouldBe` 5
+    it "finds how many loop cycles it takes to find an already seen state" $ do
+      cycles [] `shouldBe` 0
+      cycles [0, 2, 7, 0] `shouldBe` 4
