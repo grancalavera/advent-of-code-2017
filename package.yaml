@@ -15,6 +15,7 @@ library:
   - Advent.Day2
   - Advent.Day4
   - Advent.Day5
+  - Advent.Day6
   dependencies:
   - base >=4.7 && <5
   - containers

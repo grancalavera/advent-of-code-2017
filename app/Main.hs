@@ -7,6 +7,7 @@ import           Advent.Day1
 import           Advent.Day2
 import           Advent.Day4
 import           Advent.Day5
+import           Advent.Day6
 
 main :: IO ()
 main = do
@@ -63,6 +64,13 @@ day5 = do
   let instructions = (map read $ lines contents) :: [Int]
   print $ escapeMaze simpleOffset instructions
   print $ escapeMaze specialOffset instructions
+
+day6 :: IO ()
+day6 = do
+  header "Day 6"
+  contents <- readFile "day6input.txt"
+  let memory = map (read::String -> Int) $ splitOn "\t" $ head $ lines contents
+  print memory
 
 header :: String -> IO ()
 header = putStrLn . ("\n" ++)

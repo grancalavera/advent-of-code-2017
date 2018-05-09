@@ -2,11 +2,13 @@ module AdventSpec
   ( spec
   )
 where
+
+import           Test.Hspec
 import           Advent.Day1
 import           Advent.Day2
 import           Advent.Day4
 import           Advent.Day5
-import           Test.Hspec
+import           Advent.Day6
 
 spec :: Spec
 spec = do
@@ -64,3 +66,8 @@ spec = do
       let escape = escapeMaze specialOffset
       escape [] `shouldBe` 0
       escape [0, 3, 0, 1, -3] `shouldBe` 10
+
+  describe "Day 6: Memory Reallocation" $ do
+    it "finds how many steps it takes to find a known state" $ do
+      reallocate [] `shouldBe` 0
+      reallocate [0, 2, 7, 0] `shouldBe` 5
